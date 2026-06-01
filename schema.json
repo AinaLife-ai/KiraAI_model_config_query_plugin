@@ -1,0 +1,44 @@
+{
+  "enabled": {
+    "name": "启用插件",
+    "type": "switch",
+    "default": true,
+    "hint": "是否启用模型查询功能"
+  },
+  "show_provider_name": {
+    "name": "显示提供商名称",
+    "type": "switch",
+    "default": true,
+    "hint": "是否在模型配置中显示提供商名称（如 openai:gpt-4），关闭则只显示模型 ID（如 gpt-4）"
+  },
+  "enable_command": {
+    "name": "启用斜杠命令",
+    "type": "switch",
+    "default": false,
+    "hint": "是否响应斜杠命令（如 /modelname）直接回复"
+  },
+  "allowed_users": {
+    "name": "白名单用户QQ号",
+    "type": "list",
+    "default": [],
+    "hint": "只有列表中的QQ号可以查询模型配置，留空表示所有人可查"
+  },
+  "command_word": {
+    "name": "触发命令词",
+    "type": "string",
+    "default": "/modelname",
+    "hint": "用户输入此命令（可自定义）时，直接回复模型配置"
+  },
+  "enable_tool": {
+    "name": "启用AI工具调用",
+    "type": "switch",
+    "default": true,
+    "hint": "是否注册 query_model_config 工具，让用户可以通过自然语言查询"
+  },
+  "permission_denied_message": {
+    "name": "权限拒绝提示语",
+    "type": "text",
+    "default": "抱歉，您没有权限查询模型配置。",
+    "hint": "当无权限用户触发查询时回复的消息"
+  }
+}
