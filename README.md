@@ -1,5 +1,7 @@
 # KiraAI_model_config_query_plugin/模型配置查询助手
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/znq19/KiraAI_model_config_query_plugin)
+
 会话中查询 KiraAI 配置的默认模型名称，支持命令和白名单权限控制。
 
 其实它最大的作用是可以让ai自己真实回答自己后台用的什么模型，但这仅代表KiraAI中配置的模型名称而不是用以验证模型来源真实性。
