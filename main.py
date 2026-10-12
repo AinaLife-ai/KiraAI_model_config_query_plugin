@@ -39,17 +39,30 @@ class ModelConfigQueryPlugin(BasePlugin):
         return mapping
 
     def _format_model_value(self, value: str) -> str:
-        """格式化模型配置值，将 provider_id 替换为提供商名称"""
+        """格式化模型配置值，显示提供商名称 + 人类可读模型名。
+
+        3.0 起引用值冒号后是内部稳定 ID（uuid 形态），可读名在 ModelInfo.model_name；
+        2.x 冒号后本就是可读名。经 provider_mgr.get_model_info 解析（两代签名一致），
+        解析失败原样回退，绝不影响命令可用性。"""
         if not value or ":" not in value:
             return value
         provider_id, model_id = value.split(":", 1)
+        display = model_id
+        try:
+            pm = getattr(self.ctx, "provider_mgr", None)
+            if pm is not None:
+                info = pm.get_model_info(provider_id, model_id)
+                if info is not None:
+                    display = getattr(info, "model_name", None) or info.model_id
+        except Exception:
+            pass
         if self.show_provider_name:
             provider_map = self._get_provider_name_map()
             provider_name = provider_map.get(provider_id, provider_id)
-            return f"{provider_name}:{model_id}"
+            return f"{provider_name}:{display}"
         else:
-            # 只显示模型 ID，完全隐藏提供商
-            return model_id
+            # 只显示模型名，完全隐藏提供商
+            return display
 
     def _get_model_config(self) -> str:
         models_config = self.ctx.config.get_config("models", {})
