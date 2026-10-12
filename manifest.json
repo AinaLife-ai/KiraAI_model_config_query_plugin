@@ -4,5 +4,6 @@
   "version": "1.0.1",
   "author": "znq19",
   "description": "会话中查询 KiraAI 配置的默认模型名称，支持命令和白名单权限控制。",
-  "repo": "https://github.com/znq19/KiraAI_model_config_query_plugin"
+  "repo": "https://github.com/znq19/KiraAI_model_config_query_plugin",
+  "icon": "icon.png"
 }
